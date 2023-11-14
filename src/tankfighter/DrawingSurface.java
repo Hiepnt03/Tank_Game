@@ -1,9 +1,3 @@
-/*
- * Ian Liu / Seegal Panchal / Daniel Peng
- * June 13, 2017
- * 
- * The JPanel object which we draw our game on
- */
 package tankfighter;
 
 import java.awt.Color;

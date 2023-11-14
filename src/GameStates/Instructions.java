@@ -1,9 +1,3 @@
-/*
- * Ian Liu / Seegal Panchal / Daniel Peng
- * June 13, 2017
- * 
- * The instructions menu.
- */
 package GameStates;
 
 import Resources.ResourceGetter;
@@ -14,7 +8,7 @@ import tankfighter.GameStateHandler;
 
 public class Instructions extends GameState{
     
-    private BufferedImage instructionsImage;//used to hold the instructions image
+    private BufferedImage instructionsImage;//giữ ảnh instructions
 
     public Instructions(){
         super();
@@ -24,8 +18,8 @@ public class Instructions extends GameState{
 
     @Override
     public int update() {
-        return GameStateHandler.INSTRUCTIONS_STATE;//the game state remains in this state until the "return to menu" button is pressed
-
+        //trạng thái trò chơi vẫn ở trạng thái này cho đến khi nhấn nút "Back To Main Menu"
+        return GameStateHandler.INSTRUCTIONS_STATE;
     }
 
     @Override
@@ -33,12 +27,12 @@ public class Instructions extends GameState{
         super.drawLogo(g, io);
         getButtons().get(0).drawWithShadow(g);
         super.drawLogo(g, io);
-        //loading instructions from an image
+        //tải instructions.png từ file hình ảnh
         instructionsImage = ResourceGetter.getBufferedImage("instructions.png");
-
-        g.drawImage(instructionsImage, 40, 155, 700, 350, null);//draws the image of the instructions
-        
-        getButtons().get(0).drawWithShadow(g);//loads "Return to Main Menu" logo
+        //vẽ hình ảnh instructions
+        g.drawImage(instructionsImage, 40, 155, 700, 350, null);
+        //Hiển thị "Return to Main Menu"
+        getButtons().get(0).drawWithShadow(g);
     }
     
     @Override

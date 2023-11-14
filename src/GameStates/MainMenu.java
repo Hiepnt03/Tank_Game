@@ -1,9 +1,3 @@
-/*
- * Ian Liu / Seegal Panchal / Daniel Peng
- * June 13, 2017
- * 
- * The main menu game state.
- */
 package GameStates;
 
 import GameObjects.Button;
@@ -18,18 +12,19 @@ public class MainMenu extends GameState{
     
     private final String[] buttonTexts = {"Play Game", "Instructions", "Highscores", "Credits", "Exit"};
     final public static int BUTTONS_START_Y = 180;
-    final public static int BUTTONS_VERTICAL_SPACING = 40;//vertical spacing between buttons
+    //vertical spacing between buttons
+    final public static int BUTTONS_VERTICAL_SPACING = 40;
     
     public MainMenu(){
         super();
         super.setLogoImageFromPath("tankFighterLogo.png");
         resetState();        
-       
     }
 
     @Override
     public int update() {
-        return GameStateHandler.MAIN_MENU_STATE;//the game state remains in this state until the "return to menu" button is pressed        
+        //the game state remains in this state until the "return to menu" button is pressed        
+        return GameStateHandler.MAIN_MENU_STATE;
     }
 
     @Override
@@ -68,8 +63,7 @@ public class MainMenu extends GameState{
                     buttonTexts[i],//text (String)
                     Button.STANDARD_FONT_SIZE,//font size
                     Button.STANDARD_TEXT_COLOR//color of actual text
-                )
-                    
+                )  
             );
         }//end creating buttons
     }

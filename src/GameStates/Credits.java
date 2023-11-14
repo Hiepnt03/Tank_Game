@@ -11,30 +11,30 @@ public class Credits extends GameState{
     private BufferedImage credit;//Lưu hình ảnh credit
     
     public Credits(){
-        super();//gets GameState
-        super.setLogoImageFromPath("creditsLogo.png");//loads the "Credits" logo
+        super();// Gọi constructor của GameState
+        super.setLogoImageFromPath("creditsLogo.png");// tải logo "Credits" lên
         resetState();
     }
 
     @Override
     public int update() {
-        return GameStateHandler.CREDITS_STATE;//the game state remains in this state until the "return to menu" button is pressed
+        return GameStateHandler.CREDITS_STATE;//trạng thái trò chơi vẫn ở trạng thái này cho đến khi nhấn nút "trở lại menu"
     }
 
     @Override
     public void draw(Graphics2D g, ImageObserver io) {
         super.drawLogo(g, io);
-        //sets credit to the image of the credits
+        // tải ảnh credit lên
         credit = ResourceGetter.getBufferedImage("credits.png");
-        g.drawImage(credit, 0, 40, null);//loads the credits onto the screen
-        getButtons().get(0).drawWithShadow(g);//loads "Return to Main Menu" logo
+        g.drawImage(credit, 0, 40, null);//tải ảnh credits.png lên màn hình
+        getButtons().get(0).drawWithShadow(g);// Vẽ button "Back to Main Menu"
         
     }
     
     @Override
     public void resetState() {
-        getButtons().clear();//clears the loaded buttons
-        addReturnToMenuButton();//loads the "Return to Main Menu" button
+        getButtons().clear();//xóa các button đã tải
+        addReturnToMenuButton();//loads the "Back to Main Menu" button
     }
     
 }

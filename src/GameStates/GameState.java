@@ -68,7 +68,7 @@ public abstract class GameState {
         g.drawImage(logoImage, GameStateHandler.FRAME_WIDTH / 2 - logoWidth / 2, y, logoWidth, STANDARD_LOGO_HEIGHT, io);
     }
 
-    //get arraylist của các ArrayList<Button>
+    // trả về arraylist của các ArrayList<Button>
     public ArrayList<Button> getButtons() {
         return buttons;
     }
@@ -90,14 +90,14 @@ public abstract class GameState {
                         
     }
     
-    // đặt hình ảnh logo thành BufferedImage
+    // set hình ảnh logo thành BufferedImage
     public void setLogoImage(BufferedImage logoImage) {
         this.logoImage = logoImage;
         // đặt lại chiều rộng về 0 để phương thức vẽ tính toán lại chiều rộng mới của logo
         logoWidth = 0;
     }
     
-    // đặt hình ảnh logo từ đường dẫn tệp
+    // set hình ảnh logo từ đường dẫn tệp
     public void setLogoImageFromPath(String filepath){
         setLogoImage(imageFromPath(filepath));
     }

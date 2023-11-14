@@ -1,9 +1,3 @@
-/*
- * Ian Liu / Seegal Panchal / Daniel Peng
- * June 13, 2017
- * 
- * Game State when the actual tank game is running
- */
 package GameStates;
 
 import Resources.ResourceGetter;

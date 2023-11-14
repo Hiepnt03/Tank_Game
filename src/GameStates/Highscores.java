@@ -1,9 +1,3 @@
-/*
- * Ian Liu / Seegal Panchal / Daniel Peng
- * June 13, 2017
- * 
- * The highscores screen
- */
 package GameStates;
 
 import GameObjects.Button;

@@ -1,9 +1,3 @@
-/*
- * Ian Liu / Seegal Panchal / Daniel Peng
- * June 13, 2017
- * 
- * A class which handles reading, writing and accessing from resources.
- */
 package Resources;
 
 import java.awt.image.BufferedImage;
