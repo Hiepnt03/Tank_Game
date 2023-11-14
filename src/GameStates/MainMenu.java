@@ -12,7 +12,7 @@ public class MainMenu extends GameState{
     
     private final String[] buttonTexts = {"Play Game", "Instructions", "Highscores", "Credits", "Exit"};
     final public static int BUTTONS_START_Y = 180;
-    //vertical spacing between buttons
+    // khoảng cách chiều dọc giữa các nút
     final public static int BUTTONS_VERTICAL_SPACING = 40;
     
     public MainMenu(){
@@ -23,26 +23,24 @@ public class MainMenu extends GameState{
 
     @Override
     public int update() {
-        //the game state remains in this state until the "return to menu" button is pressed        
+        //trạng thái trò chơi vẫn ở trạng thái này cho đến khi nhấn nút "Back To menu"     
         return GameStateHandler.MAIN_MENU_STATE;
     }
 
     @Override
     public void draw(Graphics2D g, ImageObserver io) {
-            //draw title
+            //vẽ title
             for (Button b : getButtons()) {
                 b.drawWithShadow(g);
             }
-            //draw logo
+            //vẽ logo
             drawLogo(g, io);
             
-            //draw tank images
+            //vẽ hình tank
             BufferedImage greenTank = null;
             BufferedImage yellowTank = null;
             greenTank = ResourceGetter.getBufferedImage("greenTankIcon.png");
             yellowTank = ResourceGetter.getBufferedImage("yellowTankIcon.png");
-            
-  
             
             g.drawImage(greenTank, 520, 250, 250, 250, io);
             g.drawImage(yellowTank, 30, 250, 250, 250, io);            
@@ -51,7 +49,7 @@ public class MainMenu extends GameState{
 
     @Override
     public void resetState() {
-        //initialize buttons for each gameState
+        // khởi tạo các button cho mỗi GameState
         for (int i = 0; i < 5; i++) {
 
             super.addButton(//int x, int y, int width, int height, Color boxColor, String text, int textSize, Color textColor                    
@@ -69,7 +67,7 @@ public class MainMenu extends GameState{
     }
     
     
-    //returns the new gameState to go to (ex. if "Instructions")
+    // trả về GameState mới cần truy cập (ví dụ: nếu "Instructions")
     public int mousePressed(int[] pos){
         String currButtonText = getMenuButtonPressed(pos);
         if(currButtonText.equals("Play Game")){
