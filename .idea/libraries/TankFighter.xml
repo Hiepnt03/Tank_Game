@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="TankFighter">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/dist/TankFighter.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
