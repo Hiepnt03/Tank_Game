@@ -15,7 +15,7 @@ public class Highscores extends GameState{
     private String recentPlayerName;
     private int recentPlayerScore;
     
-    //names of the highest scorers
+    //tên của những người ghi điểm cao nhất
     private Button[] top5nameButtons  = new Button[6];
     private Button[] top5scoreButtons = new Button[6];
     
@@ -35,7 +35,7 @@ public class Highscores extends GameState{
     public void quickSort(ArrayList<Score> n, int left, int right) {
         int i = left;
         int j = right;
-        int pivot = n.get((left+right)/2).getScore(); // middle value
+        int pivot = n.get((left+right)/2).getScore(); // giá trị chính giữa
         Score temp = new Score("",0);
         while (i < j) {
             while (n.get(i).getScore() > pivot) {
@@ -45,11 +45,11 @@ public class Highscores extends GameState{
                 j--;
             }
             if (i <= j) {
-                temp = n.get(i); // temp = left number
-                n.set(i, n.get(j)); // left number turns into right number
-                n.set(j, temp); // right number = previous left numbers (swap complete)
-                i++; // move index right
-                j--; // move index left
+                temp = n.get(i); // temp = số bên trái
+                n.set(i, n.get(j)); // số bên trái chuyển thành số bên phải
+                n.set(j, temp); // số bên phải = số bên trái trước đó (hoán đổi hoàn tất)
+                i++; // di chuyển chỉ mục sang phải
+                j--; // di chuyển chỉ mục sang trái
             }            
         }
         if (left < j) {
@@ -63,7 +63,7 @@ public class Highscores extends GameState{
 
     
     public void readHighscores(){
-        //clear the highscores so if the user leaves highscores and then returns then the scores are not doubled
+        // xóa điểm cao để nếu người dùng rời khỏi điểm cao và sau đó quay lại thì điểm sẽ không được nhân đôi
         allscores.clear();
         
         //variables used for holding values when the datafile is read
@@ -77,17 +77,17 @@ public class Highscores extends GameState{
         while(s.hasNextLine()){
             name = s.nextLine();
             score = Integer.parseInt(s.nextLine());
-            allscores.add(new Score(name,score));//add score to the ArrayList
+            allscores.add(new Score(name,score)); // thêm điểm vào ArrayList
 
         }
 
-        //need to add 5 filler scores, so the game can 
-        //load 5 highscores even if nobody played the game
+        // cần thêm 5 điểm phụ để trò chơi có thể
+        // tải 5 điểm cao ngay cả khi không có ai chơi game
         for(int i = 0; i < 5; i++){
             allscores.add(filler);
         }
 
-        //sort the highscores in descending order
+        // sắp xếp điểm cao theo thứ tự giảm dần
         quickSort(allscores, 0, allscores.size()-1);
          
     }
@@ -95,7 +95,7 @@ public class Highscores extends GameState{
 
     @Override
     public int update() {
-        return GameStateHandler.HIGHSCORES_STATE;//the game state remains in this state until the "return to menu" button is pressed
+        return GameStateHandler.HIGHSCORES_STATE;//trạng thái trò chơi vẫn ở trạng thái này cho đến khi nhấn nút "trở lại menu"
 
     }
 
@@ -113,18 +113,19 @@ public class Highscores extends GameState{
     
     @Override
     /**
-     * Resets the state, including:
-     *      -> recalculates the ArrayList of highscores
-     *      -> recalculates the top 5 score names and scores
-     *      -> if the last player is not in the top 5, place them in 5th place
-     *      -> Highlights the last player's name and score
+     * 
+     *  Đặt lại trạng thái, bao gồm:
+     *      -> tính toán lại ArrayList của điểm cao
+     *      -> tính toán lại tên và điểm của 5 điểm cao nhất
+     *      -> nếu người chơi cuối cùng không có trong top 5 thì xếp họ ở vị trí thứ 5
+     *      -> Làm nổi bật tên và điểm của người chơi cuối cùng
      */
     public void resetState() {
-        //read and sort all the highscores
+        //đọc và sắp xếp tất cả các điểm cao
         readHighscores();
         
-        //load the top 5 highscores into the top 5 names and scores arrays
-        //the first element of each array will be the title
+        //tải 5 điểm cao nhất vào 5 tên và mảng điểm cao nhất
+        //phần tử đầu tiên của mỗi mảng sẽ là tiêu đề
         top5nameButtons[0] = new Button(100,180,200,30,transparent,"Name",36,Color.BLACK);
         top5scoreButtons[0] = new Button(500,180,200,30,transparent,"Score",36,Color.BLACK);
         
@@ -142,7 +143,7 @@ public class Highscores extends GameState{
             top5nameButtons[i] = new Button (150,200 + 50*i,275,30,transparent,currRank + ". " + currName,24,Color.BLACK, Button.LEFT_LOCATION);
             top5scoreButtons[i] = new Button(425,200 + 50*i,200,30,transparent,"" + currScore,24,Color.BLACK, Button.RIGHT_LOCATION);
             
-            //if the player is in the top 5, highlight their score
+            //nếu người chơi nằm trong top 5, hãy đánh dấu điểm của họ
             if(recentPlayerName != null && recentPlayerName.equals(currName) && recentPlayerScore == currScore){
                 playerInTop5 = true;
                 top5nameButtons[i].setBoxColor(semiTransparentGray);
@@ -150,24 +151,24 @@ public class Highscores extends GameState{
             }
         }
         
-        //if the player is not in the top 5 scores, display their name at the bottom of the list with their rank
+        //nếu người chơi không nằm trong top 5 điểm cao nhất, hiển thị tên của họ ở cuối danh sách kèm theo thứ hạng của họ
         if(recentPlayerName != null && !playerInTop5){
-            //get the player's rank
+            //lấy thứ hạng của người chơi
             currRank = 1;//counter for getting their rank
             for (int i = 0; i < allscores.size(); i++) {
                 
-                //if the checked score is not the current player's score, add 1 to the counter
+                
+                // nếu điểm đã kiểm tra không phải là điểm của người chơi hiện tại, hãy thêm 1 vào bộ đếm
                 if(i > 0 && allscores.get(i).getScore() < allscores.get(i-1).getScore()){
                     currRank++;
                 }
-                
-                //if the checked score is the current player's score, stop searching
+                 
+                //nếu điểm đã kiểm tra là điểm của người chơi hiện tại, hãy dừng tìm kiếm   
                 if(allscores.get(i).getScore() == recentPlayerScore){
                     break;
                 }
             }
-            
-            //write the current player's score to the scoreboard, along with their rank
+            // ghi điểm của người chơi hiện tại lên bảng điểm, cùng với thứ hạng của họ
             top5nameButtons[5] = new Button (150, 450, 275,30,semiTransparentGray, currRank + ". " + recentPlayerName,24,Color.BLACK, Button.LEFT_LOCATION);
             top5scoreButtons[5] = new Button(425, 450, 200,30,semiTransparentGray,"" + recentPlayerScore,24,Color.BLACK, Button.RIGHT_LOCATION);
         }

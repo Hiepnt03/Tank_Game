@@ -49,7 +49,7 @@ public class MainMenu extends GameState{
 
     @Override
     public void resetState() {
-        // khởi tạo các button cho mỗi GameState
+        // khởi tạo các button cho mỗi GameState    
         for (int i = 0; i < 5; i++) {
 
             super.addButton(//int x, int y, int width, int height, Color boxColor, String text, int textSize, Color textColor                    
@@ -63,7 +63,7 @@ public class MainMenu extends GameState{
                     Button.STANDARD_TEXT_COLOR//color of actual text
                 )  
             );
-        }//end creating buttons
+        }//kết thúc việc tạo buttons
     }
     
     
@@ -81,12 +81,12 @@ public class MainMenu extends GameState{
         }else if(currButtonText.equals("Exit")){
             return -1;
         }
-        //if the user did not press any of the buttons, stay on the main menu
+        //nếu người dùng không nhấn bất kỳ nút nào, hãy tiếp tục ở menu chính
         return 5;
     }
     /**
-     * Gets the button number of the button pressed on the main menu screen
-     * @return the number of the button (ex. 0 = play game), -1 if none are pressed
+     * Lấy số nút của nút được nhấn trên màn hình menu chính
+     * trả về số nút (ví dụ: 0 = chơi trò chơi), -1 nếu không nhấn nút nào
      */
     private String getMenuButtonPressed(int[] mousePos){
         for (Button b : getButtons()) {

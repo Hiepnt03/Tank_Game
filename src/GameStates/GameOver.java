@@ -12,8 +12,8 @@ import static tankfighter.GameStateHandler.FRAME_WIDTH;
 public class GameOver extends GameState{
     private boolean beatGame;
     private String playerName;
-    private int lastLevel;//the player lost at this level (displeyed on Game Over screen and recorded to highscores)
-    
+    // người chơi thua ở màn này (hiển thị trên màn hình Game Over và được ghi vào điểm cao)
+    private int lastLevel;
     
     public GameOver(){
         super();  
@@ -22,17 +22,18 @@ public class GameOver extends GameState{
 
     @Override
     public int update() {
-        return GameStateHandler.GAME_OVER_STATE;//the game state remains in this state until the "return to menu" button is pressed
+        //trạng thái trò chơi vẫn ở trạng thái này cho đến khi nhấn nút "trở lại menu"
+        return GameStateHandler.GAME_OVER_STATE;
     }
 
     @Override
     public void draw(Graphics2D g, ImageObserver io) {
         super.drawLogo(g, io);
         
-        //draw "YOU GOT TO LEVEL #" text
+        //vẽ text "YOU GOT TO LEVEL #"
         getButtons().get(0).draw(g);
         
-        //draw "Choose a Name", "Record Score" and "Return to Main Menu" buttons
+        //vẽ buttons "Choose a Name", "Record Score" và "Return to Main Menu"
         for (int i = 1; i < 4; i++) {
             getButtons().get(i).drawWithShadow(g);
         }
@@ -40,7 +41,7 @@ public class GameOver extends GameState{
     
     @Override
     public void resetState() {
-        //create buttons
+        //tạo buttons
         super.addButton(new Button(FRAME_WIDTH/2 - Button.STANDARD_WIDTH/2, 200, 
                 Button.STANDARD_WIDTH, Button.STANDARD_HEIGHT,
                 new Color(0, 0, 0, 0), "",
@@ -62,9 +63,9 @@ public class GameOver extends GameState{
     }
     
     public int mousePressed(int[] mousePos, int score, Highscores highscores){
-        //if the user pressed "return to main menu" then return 5
+        //nếu người chơi ấn button "return to main menu" thì return 5
         if(getButtons().get(3).isInBounds(mousePos)) return 5;
-        //if they pressed "enter name here"
+        //Nếu người chơi ấn "enter name here"
         if(getButtons().get(1).isInBounds(mousePos)){
             playerName = JOptionPane.showInputDialog("Enter Your Name Below");
             if(playerName == null){
@@ -72,25 +73,24 @@ public class GameOver extends GameState{
             }
             getButtons().get(1).setText(playerName);
         }
-        //if they pressed "Record Score"
+        //Nếu người chơi ấn "Record Score"
         else if(getButtons().get(2).isInBounds(mousePos)){
             //JOptionPane.showMessageDialog(null, "recording score");
-            //we need to check if the name is null again just in case they do not ever press "Choose a Name"
+            //chúng ta cần kiểm tra xem tên đó có còn rỗng không đề phòng trường hợp họ không nhấn "Choose a Name"
             if(playerName == null){
                 playerName = "UNNAMED";
             }
             writeToHighscores(playerName, lastLevel);
-            //let the highscores page know the current player's name and score
-            //(so it can be displayed and highlighted in the highscores page)
+            //cho trang điểm cao biết tên và điểm của người chơi hiện tại
+            //(để nó có thể được hiển thị và đánh dấu trong trang điểm cao)
             highscores.setRecentPlayerName(playerName);
             highscores.setRecentPlayerScore(score);
 
-            //tell the GameStatesHandler to go to highscores page
-            
+            // yêu cầu GameStatesHandler truy cập trang điểm cao
             return 2;
 
         }
-        //if the user does not wish to change gameStates, then remain on the GameOver screen
+        // nếu người chơi không muốn thay đổi trạng thái trò chơi thì vẫn ở lại màn hình GameOver
         return 1;
         
     }
