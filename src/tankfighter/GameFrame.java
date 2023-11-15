@@ -1,9 +1,3 @@
-/*
- * Ian Liu / Seegal Panchal / Daniel Peng
- * June 13, 2017
- * 
- * The class which creates the game frame (JFrame)
- */
 package tankfighter;
 
 import java.io.BufferedReader;

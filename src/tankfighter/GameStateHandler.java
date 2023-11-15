@@ -1,9 +1,3 @@
-/*
- * Ian Liu / Seegal Panchal / Daniel Peng
- * June 13, 2017
- * 
- * A class that handles all the various states that the game can be in (ex. main menu, highscores, in-game, etc)
- */
 package tankfighter;
 import GameStates.GameState;
 import java.awt.Graphics2D;
