@@ -48,8 +48,8 @@ public class Highscores extends GameState{
                 temp = n.get(i); // temp = số bên trái
                 n.set(i, n.get(j)); // số bên trái chuyển thành số bên phải
                 n.set(j, temp); // số bên phải = số bên trái trước đó (hoán đổi hoàn tất)
-                i++; // di chuyển chỉ mục sang phải
-                j--; // di chuyển chỉ mục sang trái
+                i++; // di chuyển index sang phải
+                j--; // di chuyển index sang trái
             }            
         }
         if (left < j) {
@@ -66,14 +66,13 @@ public class Highscores extends GameState{
         // xóa điểm cao để nếu người dùng rời khỏi điểm cao và sau đó quay lại thì điểm sẽ không được nhân đôi
         allscores.clear();
         
-        //variables used for holding values when the datafile is read
+        //các biến được sử dụng để giữ các giá trị khi đọc tệp dữ liệu
         String name;
         int score;
         
         //System.out.println(System.getProperty("user.home") + "\\TankFighter_Highscores" + "\\highscores.txt");
         Scanner s = ResourceGetter.getHighscoresScanner();
-        //boolean eof = false;
-       // s.nextLine();
+
         while(s.hasNextLine()){
             name = s.nextLine();
             score = Integer.parseInt(s.nextLine());

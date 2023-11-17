@@ -33,7 +33,8 @@ public class GameOver extends GameState{
         //vẽ text "YOU GOT TO LEVEL #"
         getButtons().get(0).draw(g);
         
-        //vẽ buttons "Choose a Name", "Record Score" và "Return to Main Menu"
+        //vẽ buttons "Choose a Name", "Record Score" 
+        //và "Return to Main Menu"
         for (int i = 1; i < 4; i++) {
             getButtons().get(i).drawWithShadow(g);
         }

@@ -114,39 +114,7 @@ public class ResourceGetter {
                 e.printStackTrace();
             }
         }
-        /*File file = null;
-        BufferedWriter bw = null;
-        try {
-            file = new File(resourceStream.toURI());
-        } catch (URISyntaxException ex) {
-            Logger.getLogger(ResourceGetter.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Error writing to highscores");
-        }
-        JOptionPane.showMessageDialog(null, "finished getting file");
-        try {
-            FileWriter fw = new FileWriter(file, true);
-            bw = new BufferedWriter(fw);
-
-            bw.write(name + "\n");
-            bw.write("" + score + "\n");
-            JOptionPane.showMessageDialog(null, "saving to highscore");
-
-            
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Error getting Buffered Writer (highscores)");
-            e.printStackTrace();
-        } finally {
-            try {
-                if (bw != null) {
-                    bw.close();
-                }
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "Error in closing the BufferedWriter" + ex);
-            }
-        }*/
+        
     }
-      
-   
-    
-    
+  
 }
